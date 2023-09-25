@@ -51,14 +51,25 @@ bottom = 100
 while running:
     clear_canvas()
     tuk_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-    character.clip_draw(frame*100,bottom,100,100,x,y)
+
+    # 경계 검사
+    if x < 0:
+        x = 0
+    elif x > TUK_WIDTH:
+        x = TUK_WIDTH
+    if y < 0:
+        y = 0
+    elif y > TUK_HEIGHT:
+        y = TUK_HEIGHT
+
+    character.clip_draw(frame*100, bottom, 100, 100, x, y)
     update_canvas()
     handle_events()
-    frame = (frame + 1)%9
+    frame = (frame + 1) % 9
     if dir != 0:
-        x += dir*5
+        x += dir * 5
     if Dir != 0:
-        y += Dir*5
+        y += Dir * 5
     delay(0.05)
 
 close_canvas()
